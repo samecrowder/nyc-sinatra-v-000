@@ -1,0 +1,13 @@
+<h1> Create a Landmark</h1>
+
+<!-- it "allows you to view form to create a new landmark" do
+    visit '/landmarks/new'
+    expect(page.body).to include('<form')
+    expect(page.body).to include('landmark[name]')
+    expect(page.body).to include('landmark[year_completed]') -->
+
+<form method="POST" action='/landmarks/new'>
+  <p>Landmark Name: <input type="text" name="landmark[name]" id="landmark_name"></p>
+  <p>Landmark Year Completed: <input type="text" name="landmark[year_completed]" id="landmark_year_completed"></p>
+  <input type="submit" name="Create New Landmark" id="Create New Landmark">
+</form>

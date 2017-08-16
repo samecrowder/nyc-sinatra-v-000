@@ -1,0 +1,7 @@
+<h1>All Existing Figures</h1>
+
+<ul>
+  <% Figure.all.each do |f| %>
+    <li><p><%= f.name %> ID: <%= f.id %></p></li>
+  <% end %>
+</ul>

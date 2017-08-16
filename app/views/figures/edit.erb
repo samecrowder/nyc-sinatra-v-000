@@ -1,0 +1,38 @@
+<h1>Edit <%= @figure.name %></h1>
+
+<!-- @figure = Figure.first
+    get "/figures/#{@figure.id}/edit"
+
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to include('<form')
+    expect(last_response.body).to include('figure[name]')
+    expect(last_response.body).to include('figure[title_ids]')
+    expect(last_response.body).to include(@figure.name)  -->   
+
+<form method="POST" action="/figures/<%=@figure.id%>/edit">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
+  <p>Enter new figure name: <input type="text" name="figure[name]" id="figure_name"></p>
+
+  <p>Select a title or multiple titles</p>
+  <ul>
+  <% Title.all.each do |title| %>
+    <li><%=title.name%><input id="title_<%= title.id %>" type="checkbox" name="figure[title_ids][]" value="<%= title.id %>" <%='checked' if @figure.titles.include?(title) %>></li>
+  <% end %>
+  </ul>
+
+  <p>And/or create a new title</p>
+  <p>New Title: <input type="text" name="figure[title]" id="new_title"></p>
+
+  <p>Select a landmark or multiple landmarks</p>
+  <ul>
+  <% Landmark.all.each do |landmark| %>
+    <li><%=landmark.name%><input id="landmark_<%= landmark.id %>" type="checkbox" name="figure[landmark_ids][]" value="<%= landmark.id %>" <%='checked' if @figure.landmarks.include?(landmark) %>></li>
+  <% end %>
+  </ul>
+
+  <p>And/or create a new landmark</p>
+  <p>New Landmark: <input type="text" name="figure[landmark]" id="new_landmark"></p>
+
+  <input type="submit" name="Edit Figure" value="Edit Figure">
+</form>
